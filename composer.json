@@ -1,0 +1,17 @@
+{
+	"name": "intersvyaz/yay-bootstrap",
+	"description": "Yet another Yii Bootstrap widget toolkit",
+	"license": "BSD-3-Clause",
+	"require": {
+		"php": ">=5.4"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~3.7",
+		"yiisoft/yii": "~1.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"Intersvyaz\\YayBootstrap\\": "src"
+		}
+	}
+}
