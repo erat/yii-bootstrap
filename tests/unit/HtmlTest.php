@@ -12,19 +12,23 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testIcon()
 	{
-		$data = Html::icon('foobar', ['foo' => 'bar']);
-		$doc = new DOMDocument();
-		$doc->loadHTML($data);
-		$actual = new DOMXPath($doc);
-		$matches = $actual->query('//i[@class="icon-foobar" and @foo="bar"]');
-		$this->assertEquals(1, $matches->length);
+		$output = Html::icon('foobar', ['foo' => 'bar']);
+		$this->assertTag([
+			'tag' => 'i',
+			'attributes' => [
+				'class' => 'icon-foobar',
+				'foo' => 'bar'
+			]
+		], $output);
 
-		$data = Html::icon('foobar', ['foo' => 'bar'], 'div');
-		$doc = new DOMDocument();
-		$doc->loadHTML($data);
-		$actual = new DOMXPath($doc);
-		$matches = $actual->query('//div[@class="icon-foobar" and @foo="bar"]');
-		$this->assertEquals(1, $matches->length);
+		$output = Html::icon('foobar', ['foo' => 'bar'], 'div');
+		$this->assertTag([
+			'tag' => 'div',
+			'attributes' => [
+				'class' => 'icon-foobar',
+				'foo' => 'bar'
+			]
+		], $output);
 	}
 
 	/**
@@ -32,19 +36,63 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testFaIcon()
 	{
-		$data = Html::faIcon('foobar', ['foo' => 'bar']);
-		$doc = new DOMDocument();
-		$doc->loadHTML($data);
-		$actual = new DOMXPath($doc);
-		$matches = $actual->query('//i[@class="fa fa-foobar" and @foo="bar"]');
-		$this->assertEquals(1, $matches->length);
+		$output = Html::faIcon('foobar', ['foo' => 'bar']);
+		$this->assertTag([
+			'tag' => 'i',
+			'attributes' => [
+				'class' => 'regexp:/[fa[\s$]|fa-foobar[\s$]]{2}/',
+				'foo' => 'bar'
+			]
+		], $output);
 
-		$data = Html::faIcon('foobar', ['foo' => 'bar'], 'div');
-		$doc = new DOMDocument();
-		$doc->loadHTML($data);
-		$actual = new DOMXPath($doc);
-		$matches = $actual->query('//div[@class="fa fa-foobar" and @foo="bar"]');
-		$this->assertEquals(1, $matches->length);
+		$output = Html::faIcon('foobar', ['foo' => 'bar'], 'div');
+		$this->assertTag([
+			'tag' => 'div',
+			'attributes' => [
+				'class' => 'regexp:/[fa[\s$]|fa-foobar[\s$]]{2}/',
+				'foo' => 'bar'
+			]
+		], $output);
+	}
+
+	/**
+	 * @covers ::progressBar
+	 */
+	public function testProgressBar()
+	{
+		$output = Html::progressBar([]);
+		$this->assertEmpty($output);
+
+		$output = Html::progressBar([
+			['percent' => 50],
+			['percent' => 30, 'type' => 'alert'],
+			['percent' => 20, 'type' => 'error', 'content' => 'blah'],
+		], ['foo' => 'bar']);
+		$this->assertTag([
+			'tag' => 'div',
+			'parent' => ['tag' => 'div', 'attributes' => ['foo' => 'bar']],
+			'attributes' => [
+				'class' => 'bar',
+				'style' => 'regexp:/width:50%/'
+			]
+		], $output);
+		$this->assertTag([
+			'tag' => 'div',
+			'parent' => ['tag' => 'div', 'attributes' => ['foo' => 'bar']],
+			'attributes' => [
+				'class' => 'bar bar-alert',
+				'style' => 'regexp:/width:30%/'
+			]
+		], $output);
+		$this->assertTag([
+			'tag' => 'div',
+			'parent' => ['tag' => 'div', 'attributes' => ['foo' => 'bar']],
+			'content' => 'blah',
+			'attributes' => [
+				'class' => 'bar bar-error',
+				'style' => 'regexp:/width:20%/',
+			]
+		], $output);
 	}
 
 	/**

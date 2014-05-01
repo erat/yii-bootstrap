@@ -6,6 +6,7 @@ class Html extends \CHtml
 {
 	/**
 	 * Generates an bootstrap icon.
+	 * Example: <pre>echo Html::icon('calendar');<pre>
 	 * @param string $icon The icon name.
 	 * @param array $htmlOptions additional HTML attributes.
 	 * @param string $tag Icon html tag.
@@ -15,11 +16,13 @@ class Html extends \CHtml
 	public static function icon($icon, $htmlOptions = [], $tag = 'i')
 	{
 		static::addCssClass($htmlOptions, 'icon-' . $icon);
+
 		return static::tag($tag, $htmlOptions);
 	}
 
 	/**
 	 * Generates an font-awesome icon.
+	 * Example: <pre>echo Html::faIcon('calendar');<pre>
 	 * @param string $icon The icon name.
 	 * @param array $htmlOptions Additional HTML attributes.
 	 * @param string $tag Icon html tag.
@@ -29,7 +32,41 @@ class Html extends \CHtml
 	public static function faIcon($icon, $htmlOptions = [], $tag = 'i')
 	{
 		static::addCssClass($htmlOptions, 'fa fa-' . $icon);
+
 		return static::tag($tag, $htmlOptions);
+	}
+
+	/**
+	 * Bootstrap progress bar.
+	 * Example: <pre>echo Html::progressBar([['percent'=>80]]);<pre>
+	 * @param array $pieces One or more bar piece. Each piece have options:
+	 * <ul>
+	 *   <li>'percent' - piece with in percent (required)</li>
+	 *   <li>'type' - type of piece (optional)</li>
+	 *   <li>'content' - inner content of piece (optional)</li>
+	 * </ul>
+	 * @param array $htmlOptions Wrapper options.
+	 * @return string Generated progress bar.
+	 * @see http://getbootstrap.com/2.3.2/components.html#progress
+	 */
+	public static function progressBar($pieces, $htmlOptions = [])
+	{
+		if (empty($pieces))
+			return '';
+
+		$output = '';
+		static::addCssClass($htmlOptions, 'progress');
+		$output .= static::tag('div', $htmlOptions, false, false);
+		foreach ($pieces as $piece) {
+			$typeClass = empty($piece['type']) ? '' : ' bar-' . $piece['type'];
+			$content = empty($piece['content']) ? '' : $piece['content'];
+			$output .= static::tag('div', [
+				'class' => 'bar' . $typeClass,
+				'style' => 'width:' . $piece['percent'] . '%'
+			], $content);
+		}
+
+		return $output . '</div>';
 	}
 
 	/**

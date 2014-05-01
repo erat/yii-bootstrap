@@ -20,6 +20,7 @@ class Bootstrap extends \CApplicationComponent
 	public $minifyAssets = true;
 
 	/**
+	 * Whether to use bootstrap responsive styles.
 	 * @var bool
 	 */
 	public $responsive = true;
@@ -31,16 +32,19 @@ class Bootstrap extends \CApplicationComponent
 	protected static $self;
 
 	/**
+	 * Path to bundled assets.
 	 * @var string
 	 */
 	protected $defaultAssetsPath;
 
 	/**
+	 * Shortcut for asset manager object.
 	 * @var \CAssetManager
 	 */
 	public $assetManager;
 
 	/**
+	 * Shortcut for client script object.
 	 * @var \CClientScript
 	 */
 	public $clientScript;
@@ -74,8 +78,8 @@ class Bootstrap extends \CApplicationComponent
 	}
 
 	/**
-	 * @param $assetName
-	 * @return string
+	 * @param string $assetName
+	 * @return string Full path to asset.
 	 * @throws \CException
 	 */
 	public function resolveAssetPath($assetName)
