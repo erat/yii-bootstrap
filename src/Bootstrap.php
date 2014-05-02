@@ -121,6 +121,10 @@ class Bootstrap extends \CApplicationComponent
 			->registerCssFile($assetUrl . '/css/bootstrap' . $responsivePrefix . $minifyPrefix . '.css')
 			->registerCssFile($assetUrl . '/css/bootstrap.yii.css');
 
+		if (static::$self->responsive) {
+			static::$self->clientScript->registerMetaTag('width=device-width, initial-scale=1.0', 'viewport');
+		}
+
 		return static::$self;
 	}
 

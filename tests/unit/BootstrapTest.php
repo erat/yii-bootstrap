@@ -108,6 +108,13 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
 					->isCssFileRegistered($assetUrl . $cssFile)
 			);
 		}
+
+		if ($responsive) {
+			$prop = new ReflectionProperty(get_class(Bootstrap::instance()->clientScript), 'metaTags');
+			$prop->setAccessible(true);
+			$metaTags = $prop->getValue(Bootstrap::instance()->clientScript);
+			$this->assertEquals('viewport', $metaTags[0]['name']);
+		}
 	}
 
 	public function registerScriptAssetsProvider()
