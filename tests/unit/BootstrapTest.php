@@ -77,10 +77,10 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
 	public function registerStyleAssetsProvider()
 	{
 		return [
-			[false, false, ['/css/bootstrap.no-responsive.css', '/css/bootstrap.yii.css']],
-			[false, true, ['/css/bootstrap.css', '/css/bootstrap.yii.css']],
-			[true, false, ['/css/bootstrap.no-responsive.min.css', '/css/bootstrap.yii.css']],
-			[true, true, ['/css/bootstrap.min.css', '/css/bootstrap.yii.css']],
+			[false, false, ['/css/bootstrap.css', '/css/bootstrap.yii.css']],
+			[false, true, ['/css/bootstrap.responsive.css', '/css/bootstrap.yii.css']],
+			[true, false, ['/css/bootstrap.min.css', '/css/bootstrap.yii.css']],
+			[true, true, ['/css/bootstrap.responsive.min.css', '/css/bootstrap.yii.css']],
 		];
 	}
 

@@ -114,7 +114,7 @@ class Bootstrap extends \CApplicationComponent
 		$assetPath = static::$self->resolveAssetPath(static::ASSET_BOOTSTRAP);
 		$assetUrl = static::$self->assetManager->publish($assetPath);
 
-		$responsivePrefix = static::$self->responsive ? '' : '.no-responsive';
+		$responsivePrefix = static::$self->responsive ? '.responsive' : '';
 		$minifyPrefix = static::$self->minifyAssets ? '.min' : '';
 
 		static::$self->clientScript
