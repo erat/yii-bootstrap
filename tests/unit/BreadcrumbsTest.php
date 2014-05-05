@@ -1,13 +1,13 @@
 <?php
 
-use \Intersvyaz\YayBootstrap\Breadcrumbs;
+use \Intersvyaz\Bootstrap\Breadcrumbs;
 
 /**
- * @coversDefaultClass \Intersvyaz\YayBootstrap\Breadcrumbs
+ * @coversDefaultClass \Intersvyaz\Bootstrap\Breadcrumbs
  */
 class BreadcrumbsTest extends \PHPUnit_Framework_TestCase
 {
-	const WIDGET_CLASS = '\Intersvyaz\YayBootstrap\Breadcrumbs';
+	const WIDGET_CLASS = '\Intersvyaz\Bootstrap\Breadcrumbs';
 
 	/**
 	 * @return Breadcrumbs
@@ -55,13 +55,13 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase
 		$widget = $this->makeWidget();
 		$widget->homeLink = null;
 		$widget->links = ['test'];
-		WidgetTestHelper::runAndCapture($widget);
+		TestHelper::runAndCapture($widget);
 
 		// no home link
 		$widget = $this->makeWidget();
 		$widget->homeLink = false;
 		$widget->links = ['test'];
-		$widgetContent = WidgetTestHelper::runAndCapture($widget);
+		$widgetContent = TestHelper::runAndCapture($widget);
 		$this->assertTag([
 			'tag' => $widget->tagName,
 			'attributes' => ['class' => 'regexp:/breadcrumb/'],
@@ -76,7 +76,7 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase
 		$widget = $this->makeWidget();
 		$widget->homeLink = 'foobar';
 		$widget->links = ['test'];
-		$widgetContent = WidgetTestHelper::runAndCapture($widget);
+		$widgetContent = TestHelper::runAndCapture($widget);
 		$this->assertTag([
 			'tag' => $widget->tagName,
 			'attributes' => [
@@ -102,14 +102,14 @@ class BreadcrumbsTest extends \PHPUnit_Framework_TestCase
 	{
 		// no output produced on empty links
 		$widget = $this->makeWidget();
-		$content = WidgetTestHelper::runAndCapture($widget);
+		$content = TestHelper::runAndCapture($widget);
 		$this->assertEmpty($content);
 
 		// separator between links
 		$widget = $this->makeWidget();
 		$widget->homeLink = 'foobar';
 		$widget->links = ['foo' => 'bar', 'end'];
-		$widgetContent = WidgetTestHelper::runAndCapture($widget);
+		$widgetContent = TestHelper::runAndCapture($widget);
 		$actualHtml = new DOMDocument();
 		$actualHtml->loadHTML($widgetContent);
 

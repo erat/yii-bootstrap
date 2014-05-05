@@ -1,6 +1,6 @@
 <?php
 
-namespace Intersvyaz\YayBootstrap;
+namespace Intersvyaz\Bootstrap;
 
 /**
  * Bootstrap alert widget.
@@ -119,10 +119,8 @@ class Alert extends \CWidget
 				$script .= ".on('{$name}',{$handler})";
 			}
 			$script .= ';';
-			Bootstrap::instance()->clientScript->registerScript(__CLASS__ . '#' . $id, $script);
+			\Yii::app()->clientScript->registerScript(__CLASS__ . '#' . $id, $script);
 		}
-
-		Bootstrap::instance()->registerScriptAssets();
 	}
 
 	/**

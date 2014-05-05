@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @coversDefaultClass \Intersvyaz\YayBootstrap\ActiveForm
+ * @coversDefaultClass \Intersvyaz\Bootstrap\ActiveForm
  */
 class ActiveFormTest extends \PHPUnit_Framework_TestCase
 {
-	const WIDGET_CLASS = '\Intersvyaz\YayBootstrap\ActiveForm';
+	const WIDGET_CLASS = '\Intersvyaz\Bootstrap\ActiveForm';
 
 	public function setUp()
 	{
@@ -15,7 +15,7 @@ class ActiveFormTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @return \Intersvyaz\YayBootstrap\ActiveForm
+	 * @return ActiveForm
 	 */
 	protected function makeWidget()
 	{

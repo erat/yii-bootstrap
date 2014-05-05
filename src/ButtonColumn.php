@@ -1,6 +1,6 @@
 <?php
 
-namespace Intersvyaz\YayBootstrap;
+namespace Intersvyaz\Bootstrap;
 
 class ButtonColumn extends \CButtonColumn
 {

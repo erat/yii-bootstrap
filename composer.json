@@ -1,7 +1,7 @@
 {
-	"name": "intersvyaz/yay-bootstrap",
-	"description": "Yet another Yii Bootstrap widget toolkit",
-	"license": "BSD-3-Clause",
+	"name": "intersvyaz/yii-bootstrap",
+	"description": "Twitter Bootstrap extension for Yii framework",
+	"license": "apache",
 	"require": {
 		"php": ">=5.4"
 	},
@@ -11,7 +11,11 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Intersvyaz\\YayBootstrap\\": "src"
+			"Intersvyaz\\Bootstrap\\": "src"
 		}
+	},
+	"suggest": {
+		"intersvyaz/yii-datepicker": "Date picker widget for bootstrap",
+		"intersvyaz/yii-datetimepicker": "Date/time picker widget for bootstrap"
 	}
 }

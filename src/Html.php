@@ -1,6 +1,6 @@
 <?php
 
-namespace Intersvyaz\YayBootstrap;
+namespace Intersvyaz\Bootstrap;
 
 class Html extends \CHtml
 {
@@ -16,22 +16,6 @@ class Html extends \CHtml
 	public static function icon($icon, $htmlOptions = [], $tag = 'i')
 	{
 		static::addCssClass($htmlOptions, 'icon-' . $icon);
-
-		return static::tag($tag, $htmlOptions);
-	}
-
-	/**
-	 * Generates an font-awesome icon.
-	 * Example: <pre>echo Html::faIcon('calendar');<pre>
-	 * @param string $icon The icon name.
-	 * @param array $htmlOptions Additional HTML attributes.
-	 * @param string $tag Icon html tag.
-	 * @return string The generated icon.
-	 * @see http://fortawesome.github.io/Font-Awesome/examples/
-	 */
-	public static function faIcon($icon, $htmlOptions = [], $tag = 'i')
-	{
-		static::addCssClass($htmlOptions, 'fa fa-' . $icon);
 
 		return static::tag($tag, $htmlOptions);
 	}

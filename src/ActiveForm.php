@@ -1,6 +1,6 @@
 <?php
 
-namespace Intersvyaz\YayBootstrap;
+namespace Intersvyaz\Bootstrap;
 
 /**
  * This class is extended version of {@link \CActiveForm}, that allows you fully take advantage of bootstrap forms.

@@ -1,13 +1,13 @@
 <?php
 
-use \Intersvyaz\YayBootstrap\ButtonColumn;
+use \Intersvyaz\Bootstrap\ButtonColumn;
 
 /**
- * @coversDefaultClass \Intersvyaz\YayBootstrap\ButtonColumn
+ * @coversDefaultClass \Intersvyaz\Bootstrap\ButtonColumn
  */
 class ButtonColumnTest extends \PHPUnit_Framework_TestCase
 {
-	const WIDGET_CLASS = '\Intersvyaz\YayBootstrap\ButtonColumn';
+	const WIDGET_CLASS = '\Intersvyaz\Bootstrap\ButtonColumn';
 
 	/**
 	 * @return ButtonColumn

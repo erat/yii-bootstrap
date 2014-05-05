@@ -1,9 +1,9 @@
 <?php
 
-use Intersvyaz\YayBootstrap\Html;
+use Intersvyaz\Bootstrap\Html;
 
 /**
- * @coversDefaultClass \Intersvyaz\YayBootstrap\Html
+ * @coversDefaultClass \Intersvyaz\Bootstrap\Html
  */
 class HtmlTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,30 +26,6 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 			'tag' => 'div',
 			'attributes' => [
 				'class' => 'icon-foobar',
-				'foo' => 'bar'
-			]
-		], $output);
-	}
-
-	/**
-	 * @covers ::faIcon
-	 */
-	public function testFaIcon()
-	{
-		$output = Html::faIcon('foobar', ['foo' => 'bar']);
-		$this->assertTag([
-			'tag' => 'i',
-			'attributes' => [
-				'class' => 'regexp:/[fa[\s$]|fa-foobar[\s$]]{2}/',
-				'foo' => 'bar'
-			]
-		], $output);
-
-		$output = Html::faIcon('foobar', ['foo' => 'bar'], 'div');
-		$this->assertTag([
-			'tag' => 'div',
-			'attributes' => [
-				'class' => 'regexp:/[fa[\s$]|fa-foobar[\s$]]{2}/',
 				'foo' => 'bar'
 			]
 		], $output);

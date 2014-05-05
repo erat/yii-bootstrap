@@ -1,14 +1,14 @@
 <?php
 
-use Intersvyaz\YayBootstrap\Alert;
-use Intersvyaz\YayBootstrap\Bootstrap;
+use Intersvyaz\Bootstrap\Alert;
+use Intersvyaz\Bootstrap\Bootstrap;
 
 /**
- * @coversDefaultClass \Intersvyaz\YayBootstrap\Alert
+ * @coversDefaultClass \Intersvyaz\Bootstrap\Alert
  */
 class AlertTest extends \PHPUnit_Framework_TestCase
 {
-	const WIDGET_CLASS = '\Intersvyaz\YayBootstrap\Alert';
+	const WIDGET_CLASS = '\Intersvyaz\Bootstrap\Alert';
 
 	/**
 	 * @return Alert
@@ -50,7 +50,7 @@ class AlertTest extends \PHPUnit_Framework_TestCase
 	public function testRun_NoOutputOnNoAlerts()
 	{
 		$widget = $this->makeWidget();
-		$data = WidgetTestHelper::runAndCapture($widget);
+		$data = TestHelper::runAndCapture($widget);
 		$this->assertEmpty($data);
 	}
 
@@ -63,7 +63,7 @@ class AlertTest extends \PHPUnit_Framework_TestCase
 		$widget->alerts = ['foo' => 'bar'];
 		$widget->htmlOptions = ['one' => 'two'];
 
-		$widgetOutput = WidgetTestHelper::runAndCapture($widget);
+		$widgetOutput = TestHelper::runAndCapture($widget);
 		$this->assertTag([
 			'tag' => $widget->wrapperTag,
 			'attributes' => ['one' => 'two']
@@ -89,7 +89,7 @@ class AlertTest extends \PHPUnit_Framework_TestCase
 				return is_array($arg) && isset($arg['block']) && isset($arg['fade'])
 				&& isset($arg['htmlOptions']) && isset($arg['closeText']);
 			}));
-		WidgetTestHelper::runAndCapture($widget);
+		TestHelper::runAndCapture($widget);
 	}
 
 	/**
@@ -101,9 +101,9 @@ class AlertTest extends \PHPUnit_Framework_TestCase
 		$widget->id = 'foo';
 		$widget->alerts = ['foo' => 'bar'];
 		$widget->events = ['click' => 'return foobar()'];
-		WidgetTestHelper::runAndCapture($widget);
+		TestHelper::runAndCapture($widget);
 
-		$cs = Bootstrap::instance()->clientScript;
+		$cs = \Yii::app()->clientScript;
 		$script = $cs->scripts[$cs->defaultScriptPosition][get_class($widget) . '#' . $widget->getId()];
 		$this->assertEquals(
 			"jQuery('#foo .alert').on('click','return foobar()');",

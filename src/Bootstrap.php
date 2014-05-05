@@ -1,18 +1,14 @@
 <?php
 
-namespace Intersvyaz\YayBootstrap;
+namespace Intersvyaz\Bootstrap;
 
 class Bootstrap extends \CApplicationComponent
 {
-	const ASSET_BOOTSTRAP = 'bootstrap';
-	const ASSET_FONT_AWESOME = 'font-awesome';
-
 	/**
-	 * User-defined assets path.
-	 * You can define as string
-	 * @var string|array
+	 * User-defined assets path alias.
+	 * @var string
 	 */
-	public $assetsPath;
+	public $assetsAlias;
 
 	/**
 	 * @var bool
@@ -26,83 +22,21 @@ class Bootstrap extends \CApplicationComponent
 	public $responsive = true;
 
 	/**
-	 * Global instance.
-	 * @var self
+	 * Assets path.
+	 * @var
 	 */
-	protected static $self;
-
-	/**
-	 * Path to bundled assets.
-	 * @var string
-	 */
-	protected $defaultAssetsPath;
-
-	/**
-	 * Shortcut for asset manager object.
-	 * @var \CAssetManager
-	 */
-	public $assetManager;
-
-	/**
-	 * Shortcut for client script object.
-	 * @var \CClientScript
-	 */
-	public $clientScript;
-
-	/**
-	 * Save global instance.
-	 */
-	public function __construct()
-	{
-		if (empty(static::$self)) {
-			static::$self = $this;
-		}
-	}
+	protected $assetsPath;
 
 	/**
 	 * @inheritdoc
 	 */
 	public function init()
 	{
-		static::$self->defaultAssetsPath = realpath(__DIR__ . '/../assets');
-		static::$self->assetManager = &\Yii::app()->assetManager;
-		static::$self->clientScript = &\Yii::app()->clientScript;
-	}
-
-	/**
-	 * @return self
-	 */
-	public static function instance()
-	{
-		return static::$self;
-	}
-
-	/**
-	 * @param string $assetName
-	 * @return string Full path to asset.
-	 * @throws \CException
-	 */
-	public function resolveAssetPath($assetName)
-	{
-		if (is_string(static::$self->assetsPath)) {
-			$assetPath = \Yii::getPathOfAlias(static::$self->assetsPath) . DIRECTORY_SEPARATOR . $assetName;
-			if (!is_dir($assetPath)) {
-				$assetPath = null;
-			}
-		} elseif (is_array(static::$self->assetsPath) && isset(static::$self->assetsPath[$assetName])) {
-			$assetPath = \Yii::getPathOfAlias(static::$self->assetsPath[$assetName]);
-			if (!is_dir($assetPath)) {
-				throw new \CException('Asset path not exists');
-			}
+		if(isset($this->assetsAlias)) {
+			$this->assetsPath = \Yii::getPathOfAlias($this->assetsAlias);
 		} else {
-			$assetPath = null;
+			$this->assetsPath = realpath(__DIR__ . '/../assets');
 		}
-
-		if (empty($assetPath)) {
-			$assetPath = static::$self->defaultAssetsPath . DIRECTORY_SEPARATOR . $assetName;
-		}
-
-		return $assetPath;
 	}
 
 	/**
@@ -111,21 +45,19 @@ class Bootstrap extends \CApplicationComponent
 	 */
 	public function registerStyleAssets()
 	{
-		$assetPath = static::$self->resolveAssetPath(static::ASSET_BOOTSTRAP);
-		$assetUrl = static::$self->assetManager->publish($assetPath);
+		$assetUrl = \Yii::app()->assetManager->publish($this->assetsPath);
+		$responsivePrefix = $this->responsive ? '.responsive' : '';
+		$minifyPrefix = $this->minifyAssets ? '.min' : '';
 
-		$responsivePrefix = static::$self->responsive ? '.responsive' : '';
-		$minifyPrefix = static::$self->minifyAssets ? '.min' : '';
-
-		static::$self->clientScript
-			->registerCssFile($assetUrl . '/css/bootstrap' . $responsivePrefix . $minifyPrefix . '.css')
+		$cs = \Yii::app()->clientScript;
+		$cs->registerCssFile($assetUrl . '/css/bootstrap' . $responsivePrefix . $minifyPrefix . '.css')
 			->registerCssFile($assetUrl . '/css/bootstrap.yii.css');
 
-		if (static::$self->responsive) {
-			static::$self->clientScript->registerMetaTag('width=device-width, initial-scale=1.0', 'viewport');
+		if ($this->responsive) {
+			$cs->registerMetaTag('width=device-width, initial-scale=1.0', 'viewport');
 		}
 
-		return static::$self;
+		return $this;
 	}
 
 	/**
@@ -134,31 +66,12 @@ class Bootstrap extends \CApplicationComponent
 	 */
 	public function registerScriptAssets()
 	{
-		$assetPath = static::$self->resolveAssetPath(static::ASSET_BOOTSTRAP);
-		$assetUrl = static::$self->assetManager->publish($assetPath);
+		$assetUrl = \Yii::app()->assetManager->publish($this->assetsPath);
+		$minifyPrefix = $this->minifyAssets ? '.min' : '';
 
-		$minifyPrefix = static::$self->minifyAssets ? '.min' : '';
-
-		static::$self->clientScript
+		\Yii::app()->clientScript
 			->registerScriptFile($assetUrl . '/js/bootstrap' . $minifyPrefix . '.js');
 
-		return static::$self;
-	}
-
-	/**
-	 * Register font-awesome assets.
-	 * @return self
-	 */
-	public function registerFontAwesomeAssets()
-	{
-		$assetPath = static::$self->resolveAssetPath(static::ASSET_FONT_AWESOME);
-		$assetUrl = static::$self->assetManager->publish($assetPath);
-
-		$minifyPrefix = static::$self->minifyAssets ? '.min' : '';
-
-		static::$self->clientScript
-			->registerCssFile($assetUrl . '/css/font-awesome' . $minifyPrefix . '.css');
-
-		return static::$self;
+		return $this;
 	}
 }

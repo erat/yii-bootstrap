@@ -28,7 +28,7 @@ $config = [
 			'baseUrl' => 'http://test/assets'
 		],
 		'bootstrap' => [
-			'class' => '\Intersvyaz\YayBootstrap\Bootstrap'
+			'class' => '\Intersvyaz\Bootstrap\Bootstrap'
 		]
 	],
 ];
