@@ -23,7 +23,7 @@ class Bootstrap extends \CApplicationComponent
 
 	/**
 	 * Assets path.
-	 * @var
+	 * @var string
 	 */
 	protected $assetsPath;
 

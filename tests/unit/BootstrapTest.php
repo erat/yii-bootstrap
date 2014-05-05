@@ -52,6 +52,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
 		$bs = new Bootstrap();
 		$bs->minifyAssets = $minify;
 		$bs->responsive = $responsive;
+		$bs->init();
 		$return = $bs->registerStyleAssets();
 		$this->assertInstanceOf(get_class($bs), $return);
 
@@ -91,6 +92,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
 
 		$bs = new Bootstrap();
 		$bs->minifyAssets = $minify;
+		$bs->init();
 		$return = $bs->registerScriptAssets();
 		$this->assertInstanceOf(get_class($bs), $return);
 
