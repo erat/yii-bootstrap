@@ -16,6 +16,7 @@
 	},
 	"suggest": {
 		"intersvyaz/yii-datepicker": "Date picker widget for bootstrap",
-		"intersvyaz/yii-datetimepicker": "Date/time picker widget for bootstrap"
+		"intersvyaz/yii-datetimepicker": "Date/time picker widget for bootstrap",
+		"intersvyaz/yii-select2": "Select2 widget"
 	}
 }
