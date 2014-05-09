@@ -54,6 +54,15 @@ class Html extends \CHtml
 	}
 
 	/**
+	 * @inheritdoc
+	 */
+	public static function errorSummary($model, $header = null, $footer = null, $htmlOptions = array())
+	{
+		static::addCssClass($htmlOptions, 'alert alert-block alert-error');
+		return parent::errorSummary($model, $header, $footer, $htmlOptions);
+	}
+
+	/**
 	 * Utility function for appending class names for a generic $htmlOptions array.
 	 * @param array $htmlOptions
 	 * @param string $class

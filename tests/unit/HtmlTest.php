@@ -72,6 +72,22 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @covers ::errorSummary
+	 */
+	public function testErrorSummary()
+	{
+		$model = new FakeModel();
+		$model->addError('login', 'foobar');
+		$output = Html::errorSummary($model);
+		$this->assertTag([
+			'tag' => 'div',
+			'attributes' => [
+				'class' => 'regexp:/alert/'
+			]
+		], $output);
+	}
+
+	/**
 	 * @covers ::addCssClass
 	 */
 	public function testAddCssClass()

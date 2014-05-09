@@ -137,6 +137,15 @@
 	width: 160px;
 }
 
+/**
+ * Hide first and last buttons by default.
+ */
+ul.yiiPager .first,
+ul.yiiPager .last
+{
+	display:none;
+}
+
 span.required {
 	color: #ff0000;
 }
