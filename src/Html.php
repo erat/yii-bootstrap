@@ -20,7 +20,7 @@ class Html extends \CHtml
 	{
 		static::addCssClass($htmlOptions, 'icon-' . $icon);
 
-		return static::tag($tag, $htmlOptions);
+		return static::tag($tag, $htmlOptions, '');
 	}
 
 	/**

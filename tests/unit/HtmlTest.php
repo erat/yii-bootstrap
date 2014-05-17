@@ -20,6 +20,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 				'foo' => 'bar'
 			]
 		], $output);
+		$this->assertStringEndsWith('</i>', $output);
 
 		$output = Html::icon('foobar', ['foo' => 'bar'], 'div');
 		$this->assertTag([
@@ -29,6 +30,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 				'foo' => 'bar'
 			]
 		], $output);
+		$this->assertStringEndsWith('</div>', $output);
 	}
 
 	/**
