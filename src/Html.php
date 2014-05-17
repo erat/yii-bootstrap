@@ -2,6 +2,9 @@
 
 namespace Intersvyaz\Bootstrap;
 
+/**
+ * Bootstrap styled Yii's {@link CHtml} with some additional stuff.
+ */
 class Html extends \CHtml
 {
 	/**

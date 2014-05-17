@@ -47,11 +47,9 @@
 	background: #eeeeee;
 }
 
-.grid-view .filters .filter-container {
-	padding: 0 15px 0 0;
-}
-
 .grid-view .filters input, .grid-view .filters select {
+	padding-right: 0;
+	padding-left: 0;
 	margin-bottom: 0;
 	width: 100%;
 }

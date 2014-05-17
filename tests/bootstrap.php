@@ -34,3 +34,7 @@ $config = [
 ];
 
 Yii::createWebApplication($config);
+
+// fix Yii's autoloader (https://github.com/yiisoft/yii/issues/1907)
+Yii::$enableIncludePath = false;
+Yii::import('fakes.*');

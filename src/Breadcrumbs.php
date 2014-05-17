@@ -5,7 +5,7 @@ namespace Intersvyaz\Bootstrap;
 \Yii::import('zii.widgets.CBreadcrumbs');
 
 /**
- * Bootstrap breadcrumb widget.
+ * Bootstrap styled Yii's {@link \CBreadcrumbs}.
  * @see http://getbootstrap.com/2.3.2/components.html#breadcrumbs
  */
 class Breadcrumbs extends \CBreadcrumbs

@@ -2,6 +2,9 @@
 
 namespace Intersvyaz\Bootstrap;
 
+/**
+ * Bootstrap styled Yii's {@link \CButtonColumn}.
+ */
 class ButtonColumn extends \CButtonColumn
 {
 	/**

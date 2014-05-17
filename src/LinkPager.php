@@ -3,7 +3,7 @@
 namespace Intersvyaz\Bootstrap;
 
 /**
- * Link pager.
+ * Bootstrap styled Yii's {@link \CLinkPager}.
  * @see http://getbootstrap.com/2.3.2/components.html#pagination
  */
 class LinkPager extends \CLinkPager
