@@ -1,3 +1,4 @@
+/* grid view */
 .grid-view {
 	padding-top: 20px;
 }
@@ -80,6 +81,7 @@
 	background: url(../img/loading.gif) no-repeat;
 }
 
+/* list view */
 .list-view {
 	padding-top: 20px;
 }
@@ -126,6 +128,7 @@
 	background: url("../img/loading.gif") no-repeat;
 }
 
+/* detail view */
 .detail-view .null {
 	color: #ffc0cb;
 }
@@ -135,15 +138,7 @@
 	width: 160px;
 }
 
-/**
- * Hide first and last buttons by default.
- */
-ul.yiiPager .first,
-ul.yiiPager .last
-{
-	display:none;
-}
-
+/* forms */
 span.required {
 	color: #ff0000;
 }

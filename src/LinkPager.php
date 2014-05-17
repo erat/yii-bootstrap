@@ -39,21 +39,6 @@ class LinkPager extends \CLinkPager
 	public $cssFile = false;
 
 	/**
-	 * @var array Options for wrapper tag.
-	 */
-	public $wrapperOptions = ['class' => 'pagination'];
-
-	/**
-	 * @inheritdoc
-	 */
-	public function run()
-	{
-		echo Html::tag('div', $this->wrapperOptions, false, false);
-		parent::run();
-		echo Html::closeTag('div');
-	}
-
-	/**
 	 * @inheritdoc
 	 */
 	public function registerClientScript()

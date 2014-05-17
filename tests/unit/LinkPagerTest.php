@@ -35,10 +35,6 @@ class LinkPagerTest extends \PHPUnit_Framework_TestCase
 			'tag' => 'li',
 			'parent' => [
 				'tag' => 'ul',
-				'parent' => [
-					'tag' => 'div',
-					'attributes' => ['class' => 'pagination']
-				]
 			]
 		], $widgetOutput);
 	}
