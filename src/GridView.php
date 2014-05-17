@@ -27,5 +27,5 @@ class GridView extends \CGridView
 	/**
 	 * @inheritdoc
 	 */
-	public $itemsCssClass = 'table';
+	public $itemsCssClass = 'items table';
 }

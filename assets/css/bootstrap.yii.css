@@ -1,46 +1,22 @@
 /* grid view */
+.grid-view-loading {
+	background: url(../img/loading.gif) no-repeat;
+}
+
 .grid-view {
 	padding-top: 20px;
 }
 
-.grid-view table.items th a {
-	display: block;
-	position: relative;
-}
-
-.grid-view table.items th a .caret {
-	display: none;
-	position: absolute;
-	right: 5px;
-	top: 7px;
-}
-
-.grid-view table.items th a.asc .caret {
-	display: block;
-}
-
-.grid-view table.items th a.desc .caret {
-	border-bottom: 8px solid #000000;
-	border-top: none;
-	display: block;
-}
-
-.grid-view table.items th:hover a.sort-link:after {
+.grid-view table.items th a.sort-link.desc:after {
 	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	right: -4px;
+	display: inline-block;
 	width: 14px;
 	height: 14px;
-	line-height: 14px;
 	vertical-align: text-top;
-	background-image: url("../bootstrap/img/glyphicons-halflings.png");
-	background-position: -312px -96px;
-	background-repeat: no-repeat;
+	background: url(../img/glyphicons-halflings.png) no-repeat -312px -96px;
 }
 
-.grid-view table.items th:hover a.asc:after {
+.grid-view table.items th a.sort-link.asc:after {
 	background-position: -289px -96px;
 }
 
@@ -75,10 +51,6 @@
 
 .grid-view .empty {
 	font-style: italic;
-}
-
-.grid-view-loading {
-	background: url(../img/loading.gif) no-repeat;
 }
 
 /* list view */
@@ -196,9 +168,4 @@ span.required {
 .form-vertical .help-block.error,
 .form-vertical .help-inline.error {
 	color: #b94a48;
-}
-
-.form.gii .tooltip {
-	opacity: 1;
-	font-size: 1em;
 }
