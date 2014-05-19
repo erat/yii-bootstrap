@@ -17,7 +17,12 @@
 }
 
 .grid-view table.items th a.sort-link.asc:after {
-	background-position: -289px -96px;
+	content: "";
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	vertical-align: text-top;
+	background: url(../img/glyphicons-halflings.png) no-repeat -289px -96px;
 }
 
 .grid-view table.items tr.selected td {
