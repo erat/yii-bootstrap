@@ -75,62 +75,52 @@ class ActiveForm extends \CActiveForm
 	const TYPE_SEARCH = 'search';
 
 	/**
-	 * The form type. Allowed types are in `TYPE_*` constants.
-	 * @var string
+	 * @var string The form type. Allowed types are in `TYPE_*` constants.
 	 */
 	public $type = self::TYPE_VERTICAL;
 
 	/**
-	 * Whether to render errors inline.
-	 * @var bool
+	 * @var bool Whether to render errors inline.
 	 */
 	public $inlineErrors;
 
 	/**
-	 * Prepend wrapper CSS class.
-	 * @var string
+	 * @var string Prepend wrapper CSS class.
 	 */
 	public $prependCssClass = 'input-prepend';
 
 	/**
-	 * Append wrapper CSS class.
-	 * @var string
+	 * @var string Append wrapper CSS class.
 	 */
 	public $appendCssClass = 'input-append';
 
 	/**
-	 * Add-on CSS class.
-	 * @var string
+	 * @var string Add-on CSS class.
 	 */
 	public $addOnCssClass = 'add-on';
 
 	/**
-	 * Add-on wrapper tag.
-	 * @var string
+	 * @var string Add-on wrapper tag.
 	 */
 	public $addOnTag = 'span';
 
 	/**
-	 * Tag for wrapping field with prepended and/or appended data.
-	 * @var string
+	 * @var string Tag for wrapping field with prepended and/or appended data.
 	 */
 	public $addOnWrapperTag = 'div';
 
 	/**
-	 * Hint CSS class.
-	 * @var string
+	 * @var string Hint CSS class.
 	 */
 	public $hintCssClass = 'help-block';
 
 	/**
-	 * Hint wrapper tag.
-	 * @var string
+	 * @var string Hint wrapper tag.
 	 */
 	public $hintTag = 'p';
 
 	/**
-	 * Whether to render field error after input. Only for vertical and horizontal types.
-	 * @var bool
+	 * @var bool Whether to render field error after input. Only for vertical and horizontal types.
 	 */
 	public $showErrors = true;
 
@@ -693,12 +683,6 @@ class ActiveForm extends \CActiveForm
 		return $this->customFieldRowInternal($fieldData, $model, $attribute, $rowOptions);
 	}
 
-	//public function buttonGroupRow($model, $attribute, $widgetOptions, $rowOptions = array())
-	//{
-	//	// TODO: this is future replacement for checkBoxGroupsList and radioButtonGroupsList
-	//	// TODO: but need to rewrite TbButtonGroup for field support
-	//}
-
 	/**
 	 * Generates a custom field row for a model attribute.
 	 * About $rowOptions argument parameters see {@link ActiveForm} documentation.
@@ -833,7 +817,9 @@ class ActiveForm extends \CActiveForm
 		}
 
 		if (isset($rowOptions['hint'])) {
-			Html::addCssClass($rowOptions['hintOptions'], $this->hintCssClass);
+			if (!isset($rowOptions['hintOptions']['class'])) {
+				Html::addCssClass($rowOptions['hintOptions'], $this->hintCssClass);
+			}
 			echo \CHtml::tag($this->hintTag, $rowOptions['hintOptions'], $rowOptions['hint']);
 		}
 
@@ -880,7 +866,9 @@ class ActiveForm extends \CActiveForm
 		}
 
 		if (isset($rowOptions['hint'])) {
-			Html::addCssClass($rowOptions['hintOptions'], $this->hintCssClass);
+			if (!isset($rowOptions['hintOptions']['class'])) {
+				Html::addCssClass($rowOptions['hintOptions'], $this->hintCssClass);
+			}
 			echo \CHtml::tag($this->hintTag, $rowOptions['hintOptions'], $rowOptions['hint']);
 		}
 	}
