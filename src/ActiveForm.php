@@ -752,27 +752,33 @@ class ActiveForm extends \CActiveForm
 	 * @param string $attribute The attribute.
 	 * @param array $rowOptions Row attributes.
 	 * @return string The generated custom filed row.
-	 * @throws \CException Raised on invalid form type.
+	 * @throws \RuntimeException On invalid form type.
 	 */
 	protected function customFieldRowInternal(&$fieldData, &$model, &$attribute, &$rowOptions)
 	{
 		ob_start();
-		switch ($this->type) {
-			case self::TYPE_HORIZONTAL:
-				$this->horizontalFieldRow($fieldData, $model, $attribute, $rowOptions);
-				break;
 
-			case self::TYPE_VERTICAL:
-				$this->verticalFieldRow($fieldData, $model, $attribute, $rowOptions);
-				break;
+		try {
+			switch ($this->type) {
+				case self::TYPE_HORIZONTAL:
+					$this->horizontalFieldRow($fieldData, $model, $attribute, $rowOptions);
+					break;
 
-			case self::TYPE_INLINE:
-			case self::TYPE_SEARCH:
-				$this->inlineFieldRow($fieldData, $model, $attribute, $rowOptions);
-				break;
+				case self::TYPE_VERTICAL:
+					$this->verticalFieldRow($fieldData, $model, $attribute, $rowOptions);
+					break;
 
-			default:
-				throw new \CException('Invalid form type');
+				case self::TYPE_INLINE:
+				case self::TYPE_SEARCH:
+					$this->inlineFieldRow($fieldData, $model, $attribute, $rowOptions);
+					break;
+
+				default:
+					throw new \RuntimeException('Invalid form type');
+			}
+		} catch(\Exception $e) {
+			ob_end_clean();
+			throw $e;
 		}
 
 		return ob_get_clean();

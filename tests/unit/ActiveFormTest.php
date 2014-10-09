@@ -71,7 +71,7 @@ class ActiveFormTest extends \PHPUnit_Framework_TestCase
 		$form->type = 'horizontal';
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertEquals($form->htmlOptions['class'], 'form-' . $form->type);
 	}
 
@@ -84,21 +84,21 @@ class ActiveFormTest extends \PHPUnit_Framework_TestCase
 		$form->type = 'horizontal';
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertAttributeEquals(true, 'inlineErrors', $form);
 
 		$form = $this->makeWidget();
 		$form->type = 'vertical';
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertAttributeEquals(false, 'inlineErrors', $form);
 
 		$form = $this->makeWidget();
 		$form->inlineErrors = 999;
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertAttributeEquals(999, 'inlineErrors', $form);
 	}
 
@@ -111,21 +111,21 @@ class ActiveFormTest extends \PHPUnit_Framework_TestCase
 		$form->inlineErrors = true;
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertAttributeEquals('help-inline error', 'errorMessageCssClass', $form);
 
 		$form = $this->makeWidget();
 		$form->inlineErrors = false;
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertAttributeEquals('help-block error', 'errorMessageCssClass', $form);
 
 		$form = $this->makeWidget();
 		$form->errorMessageCssClass = 'foo bar';
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertAttributeEquals('foo bar', 'errorMessageCssClass', $form);
 	}
 
@@ -138,7 +138,7 @@ class ActiveFormTest extends \PHPUnit_Framework_TestCase
 		$form->type = 'horizontal';
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertEquals('div.control-group', $form->clientOptions['inputContainer']);
 
 		$form = $this->makeWidget();
@@ -146,14 +146,14 @@ class ActiveFormTest extends \PHPUnit_Framework_TestCase
 		$form->clientOptions['inputContainer'] = 'foobar';
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertEquals('foobar', $form->clientOptions['inputContainer']);
 
 		$form = $this->makeWidget();
 		$form->type = 'vertical';
 		ob_start();
 		$form->init();
-		ob_clean();
+		ob_end_clean();
 		$this->assertArrayNotHasKey('inputContainer', $form->clientOptions);
 	}
 
@@ -374,7 +374,7 @@ class ActiveFormTest extends \PHPUnit_Framework_TestCase
 
 		$form = $this->makeWidget();
 		$form->type = 'foobar';
-		$this->setExpectedException('CException');
+		$this->setExpectedException('RuntimeException');
 		$form->textFieldRow($model, 'login');
 	}
 
